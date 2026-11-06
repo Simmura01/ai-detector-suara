@@ -1,0 +1,3 @@
+# GitHub Pages config — paksa Jekyll abaikan folder dengan underscore
+include:
+  - _headers

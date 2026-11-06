@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GuardiVoice — Detektor Keaslian Suara AI</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════ NAVBAR ═══════════════════════════════ -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <div class="nav-brand-wrap">
+        <span class="nav-brand">GuardiVoice</span>
+      </div>
+      <div class="nav-links">
+        <a href="#detector" class="nav-link">Detektor</a>
+        <a href="#panduan" class="nav-link">Panduan</a>
+      </div>
+      <button class="nav-menu-btn" id="navMenuBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <!-- Mobile menu -->
+    <div class="mobile-menu hidden" id="mobileMenu">
+      <a href="#detector">Detektor</a>
+      <a href="#panduan">Panduan</a>
+    </div>
+  </nav>
+
+  <!-- ════════════════════════════ MAIN CONTAINER ══════════════════════════ -->
+  <main class="main-wrapper">
+
+    <!-- ── BAGIAN ATAS: TULISAN, GAMBAR & TEMPAT FILE/RECORD ── -->
+    <section class="top-section" id="detector">
+      <div class="container-sm">
+
+        <!-- Header Teks -->
+        <div class="top-header">
+          <h1 class="main-title">Deteksi Keaslian Suara</h1>
+          <p class="main-desc">
+            Sistem analisis bio-akustik untuk memverifikasi apakah suara berasal dari pita suara manusia asli atau hasil sintesis kecerdasan buatan (AI Voice).
+          </p>
+        </div>
+
+      
+
+        <!-- ── KONTROL INPUT AUDIO: UPLOAD & REKAM ── -->
+        <div class="audio-box">
+          <!-- Tab Switcher -->
+          <div class="tab-bar" role="tablist">
+            <button class="tab-btn active" role="tab" aria-selected="true" data-tab="upload" onclick="switchTab('upload')">
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              Upload File
+            </button>
+            <button class="tab-btn" role="tab" aria-selected="false" data-tab="record" onclick="switchTab('record')">
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3" stroke="currentColor" stroke-width="2"/><path d="M5 10c0 3.866 3.134 7 7 7s7-3.134 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="17" x2="12" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="9" y1="21" x2="15" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              Rekam Suara
+            </button>
+          </div>
+
+          <!-- Panel Upload -->
+          <div class="panel" id="panel-upload">
+            <div class="drop-zone" id="dropZone" role="button" tabindex="0" aria-label="Upload area">
+              <div class="drop-icon">
+                <svg width="40" height="40" fill="none" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><polyline points="17 8 12 3 7 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="12" y1="3" x2="12" y2="15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </div>
+              <p class="drop-title">Pilih atau Seret File Audio</p>
+              <p class="drop-sub">Mendukung format WAV, MP3, OGG, FLAC, M4A</p>
+              <label class="btn-upload" for="fileInput">Pilih File</label>
+              <input type="file" id="fileInput" accept=".wav,.mp3,.ogg,.flac,.m4a" hidden/>
+            </div>
+
+            <div id="fileInfo" class="file-info hidden">
+              <div class="file-info-left">
+                <div class="file-info-text">
+                  <div id="fileName" class="file-name">-</div>
+                  <div id="fileSize" class="file-sz">-</div>
+                </div>
+              </div>
+              <button class="btn-icon" id="clearBtn" aria-label="Hapus file" title="Hapus">
+                <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+            </div>
+            <audio id="audioPlayer" controls class="audio-player hidden"></audio>
+            <button id="analyzeBtn" class="btn-primary hidden" onclick="analyze()">
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/><path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              Analisis Suara
+            </button>
+          </div>
+
+          <!-- Panel Rekam -->
+          <div class="panel hidden" id="panel-record">
+            <div class="recorder-area">
+              <div class="visualizer-wrap">
+                <canvas id="waveCanvas" class="wave-canvas" width="600" height="120" aria-label="Visualisasi gelombang suara"></canvas>
+                <div class="vis-idle" id="visIdle">
+                  <p>Mikrofon belum aktif</p>
+                </div>
+              </div>
+
+              <div class="rec-timer" id="recTimer">00:00</div>
+              <div class="rec-status" id="recStatus">Siap merekam</div>
+
+              <div class="rec-controls">
+                <button class="btn-rec" id="btnRecord" onclick="toggleRecord()" title="Mulai / Berhenti Rekam">
+                  <span class="rec-icon" id="recIcon">REC</span>
+                </button>
+                <button class="btn-icon-lg" id="btnStopRec" onclick="stopRecord()" title="Stop" disabled>
+                  <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>
+                </button>
+                <button class="btn-icon-lg" id="btnResetRec" onclick="resetRecord()" title="Ulang" disabled>
+                  <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M3 3v5h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </button>
+              </div>
+
+              <div id="recResult" class="rec-result hidden">
+                <audio id="recPlayer" controls class="audio-player"></audio>
+                <button class="btn-primary" onclick="analyzeRec()">
+                  <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/><path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                  Analisis Rekaman
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Loading -->
+          <div id="loadingSection" class="result-panel hidden">
+            <div class="loading-inner">
+              <div class="pulse-ring">
+                <div class="pulse-dot"></div>
+              </div>
+              <p class="loading-text">Sedang Memproses Audio<span class="dots"></span></p>
+              <div class="loading-steps">
+                <div class="step active" id="step1">Memuat file audio</div>
+                <div class="step" id="step2">Mengekstrak parameter bio-akustik</div>
+                <div class="step" id="step3">Evaluasi batas pita suara</div>
+                <div class="step" id="step4">Menyusun hasil</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── HASIL ANALISIS (SIMPLIFIKASI PENILAIAN) ── -->
+          <div id="resultSection" class="result-panel hidden">
+            <div class="result-inner">
+
+              <!-- Putusan Utama (Verdict Sederhana Tanpa Emoji) -->
+              <div class="verdict-box" id="verdictBox">
+                <div class="verdict-text">
+                  <h3 id="verdictLabel">-</h3>
+                  <p id="verdictSub">-</p>
+                </div>
+              </div>
+
+              <!-- Keyakinan Tunggal & Sederhana -->
+              <div class="conf-meter">
+                <div class="conf-labels">
+                  <span>Tingkat Keyakinan Analisis</span>
+                  <span id="confPct" class="conf-pct">0%</span>
+                </div>
+                <div class="conf-track">
+                  <div class="conf-fill" id="confFill" style="width:0%"></div>
+                </div>
+              </div>
+
+              <!-- Distribusi Persentase Sederhana -->
+              <div class="prob-grid">
+                <div class="prob-card human-card">
+                  <div class="prob-card-header">
+                    <span>Kemungkinan Suara Manusia</span>
+                  </div>
+                  <div class="prob-val" id="probHumanVal">0%</div>
+                  <div class="prob-track"><div class="prob-fill human-fill" id="probHumanBar" style="width:0%"></div></div>
+                </div>
+                <div class="prob-card ai-card">
+                  <div class="prob-card-header">
+                    <span>Kemungkinan Suara AI</span>
+                  </div>
+                  <div class="prob-val" id="probAiVal">0%</div>
+                  <div class="prob-track"><div class="prob-fill ai-fill" id="probAiBar" style="width:0%"></div></div>
+                </div>
+              </div>
+
+              <!-- ── ANALISIS MENDALAM (DISEMBUNYIKAN SECARA DEFAULT) ── -->
+              <details class="deep-analysis-details" id="deepAnalysis">
+                <summary class="deep-analysis-toggle">
+                  <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                  <span>Buka Analisis Mendalam (Parameter Akustik)</span>
+                </summary>
+
+                <div class="deep-analysis-body">
+                  <!-- 4 Batasan Akustik Kunci -->
+                  <div class="boundaries-section" id="boundariesSection">
+                    <div class="boundaries-header">
+                      <div class="boundaries-title">
+                        <span class="boundaries-badge">Algoritma BAMBS</span>
+                        <h4>Evaluasi 4 Batasan Fisik Akustik</h4>
+                      </div>
+                      <span class="violations-badge all-passed" id="violationsBadge">Status Normal</span>
+                    </div>
+                    <p class="boundaries-sub" id="boundariesSummaryText">Parameter gelombang suara diuji terhadap rentang biologis pita suara manusia.</p>
+                    <div class="boundaries-grid" id="boundariesGrid">
+                      <!-- Dinamis via JavaScript -->
+                    </div>
+                  </div>
+
+                  <!-- Detail Fitur Numerik Lengkap -->
+                  <div class="feat-box">
+                    <h5 class="feat-box-title">Ringkasan Fitur Numerik</h5>
+                    <div class="feat-grid" id="featGrid"></div>
+                  </div>
+                </div>
+              </details>
+
+              <!-- Tombol Reset -->
+              <button class="btn-outline" onclick="resetAll()">
+                <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M3 3v5h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                Analisis Audio Lain
+              </button>
+
+            </div>
+          </div>
+
+          <!-- Error Box -->
+          <div id="errorSection" class="result-panel hidden">
+            <div class="error-inner">
+              <h3>Terjadi Kesalahan</h3>
+              <p id="errorMsg">-</p>
+              <button class="btn-outline" onclick="resetAll()">Coba Lagi</button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── PANDUAN PENGGUNA ── -->
+    <section class="section" id="panduan">
+      <div class="container-sm">
+        <div class="section-header">
+          <h2 class="section-title">Panduan Penggunaan</h2>
+          <p class="section-sub">Tata cara menganalisis suara untuk memperoleh akurasi optimal</p>
+        </div>
+
+        <div class="guide-tabs">
+          <button class="guide-tab active" onclick="showGuide('upload-guide')">Upload File</button>
+          <button class="guide-tab" onclick="showGuide('rec-guide')">Rekam Suara</button>
+          <button class="guide-tab" onclick="showGuide('tips-guide')">Tips Akurasi</button>
+        </div>
+
+        <div class="guide-content" id="upload-guide">
+          <div class="guide-steps">
+            <div class="gs">
+              <div class="gs-num">1</div>
+              <div class="gs-body">
+                <h4>Siapkan File Audio</h4>
+                <p>Format yang didukung: WAV, MP3, OGG, FLAC, M4A. Format WAV direkomendasikan karena mempertahankan sinyal gelombang utuh tanpa kompresi.</p>
+              </div>
+            </div>
+            <div class="gs">
+              <div class="gs-num">2</div>
+              <div class="gs-body">
+                <h4>Unggah File</h4>
+                <p>Klik tombol Pilih File atau tarik file audio ke kotak upload yang disediakan.</p>
+              </div>
+            </div>
+            <div class="gs">
+              <div class="gs-num">3</div>
+              <div class="gs-body">
+                <h4>Mulai Analisis</h4>
+                <p>Tekan tombol Analisis Suara dan tunggu beberapa detik sampai sistem selesai memproses.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="guide-content hidden" id="rec-guide">
+          <div class="guide-steps">
+            <div class="gs">
+              <div class="gs-num">1</div>
+              <div class="gs-body">
+                <h4>Buka Tab Rekam Suara</h4>
+                <p>Pilih tab Rekam Suara di panel atas dan berikan izin akses mikrofon pada browser.</p>
+              </div>
+            </div>
+            <div class="gs">
+              <div class="gs-num">2</div>
+              <div class="gs-body">
+                <h4>Rekam Audio</h4>
+                <p>Tekan tombol REC untuk mulai merekam. Rekam suara pembicara atau sampel audio minimal 5 hingga 15 detik.</p>
+              </div>
+            </div>
+            <div class="gs">
+              <div class="gs-num">3</div>
+              <div class="gs-body">
+                <h4>Hentikan dan Analisis</h4>
+                <p>Tekan tombol Stop, dengarkan hasil rekaman, lalu tekan tombol Analisis Rekaman.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="guide-content hidden" id="tips-guide">
+          <div class="tips-grid">
+            <div class="tip-card">
+              <div class="tip-header">
+                <span class="tip-badge do">Kondisi Ideal</span>
+              </div>
+              <ul>
+                <li>Durasi audio berkisar antara 5 hingga 30 detik</li>
+                <li>Lingkungan rekaman tenang dan minim derau latar</li>
+                <li>Menggunakan mikrofon yang jernih tanpa distorsi keras</li>
+              </ul>
+            </div>
+            <div class="tip-card">
+              <div class="tip-header">
+                <span class="tip-badge dont">Kondisi Kurang Ideal</span>
+              </div>
+              <ul>
+                <li>Durasi audio terlalu singkat (di bawah 3 detik)</li>
+                <li>Rekaman suara tertimpa musik latar atau suara bising</li>
+                <li>File rekaman terkompresi berulang kali dengan bitrate sangat rendah</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ════════════════════════════ FOOTER ══════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container-sm">
+      <div class="footer-simple">
+        <span class="footer-title">GuardiVoice</span>
+        <p class="footer-text">Sistem Deteksi Keaslian Suara Berbasis Parameter Bio-Akustik.</p>
+        <div class="footer-links-simple">
+          <a href="#detector">Detektor</a>
+          <a href="#panduan">Panduan</a>
+        </div>
+        <p class="footer-copy">© 2025 GuardiVoice · SMAN 1 KOTA BEKASI</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+</body>
+</html>

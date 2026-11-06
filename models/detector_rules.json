@@ -1,0 +1,93 @@
+{
+  "algorithm": "BAMBS",
+  "version": "2.0.0",
+  "feature_names": [
+    "pitch_range",
+    "shimmer",
+    "hnr",
+    "mfcc_7_std"
+  ],
+  "params": {
+    "pitch_range": {
+      "id": "pitch_range",
+      "name": "Rentang Dinamika Nada (Pitch Range)",
+      "unit": "Hz",
+      "direction": -1,
+      "theta": 132.5578,
+      "tau": 29.8674,
+      "h_mean": 180.7217,
+      "h_std": 54.2113,
+      "a_mean": 118.9987,
+      "a_std": 15.2616,
+      "cohen_d": 1.55,
+      "desc_human": "Variasi nada dinamis & ekspresif khas biologis manusia",
+      "desc_ai": "Intonasi nada terbatas/monoton khas sintesis TTS",
+      "weight": 0.1886
+    },
+    "shimmer": {
+      "id": "shimmer",
+      "name": "Perturbasi Mikro-Amplitudo (Shimmer)",
+      "unit": "rasio",
+      "direction": 1,
+      "theta": 0.1163,
+      "tau": 0.0057,
+      "h_mean": 0.108,
+      "h_std": 0.0091,
+      "a_mean": 0.1215,
+      "a_std": 0.0057,
+      "cohen_d": 1.785,
+      "desc_human": "Mikro-fluktuasi amplitudo getaran glotis organik normal",
+      "desc_ai": "Artifak fluktuasi amplitudo mikroskopis dari neural vocoder",
+      "weight": 0.2172
+    },
+    "hnr": {
+      "id": "hnr",
+      "name": "Harmonic-to-Noise Ratio (HNR)",
+      "unit": "rasio",
+      "direction": -1,
+      "theta": 2.1655,
+      "tau": 0.2705,
+      "h_mean": 2.5812,
+      "h_std": 0.4676,
+      "a_mean": 1.9845,
+      "a_std": 0.2036,
+      "cohen_d": 1.654,
+      "desc_human": "Resonansi harmonik kaya dengan desah udara pita suara alami",
+      "desc_ai": "Distorsi harmonik sintetis tanpa dinamika respirasi biologis",
+      "weight": 0.2013
+    },
+    "mfcc_7_std": {
+      "id": "mfcc_7_std",
+      "name": "Dispersi Formant Spektral (MFCC-7)",
+      "unit": "koefisien",
+      "direction": 1,
+      "theta": 14.484,
+      "tau": 0.5517,
+      "h_mean": 13.1792,
+      "h_std": 0.804,
+      "a_mean": 15.555,
+      "a_std": 0.66,
+      "cohen_d": 3.23,
+      "desc_human": "Koherensi formasi vokal rongga laring dan mulut manusia",
+      "desc_ai": "Jejak dispersi spektral akibat upsampling konvolusi neural network",
+      "weight": 0.393
+    }
+  },
+  "metrics": {
+    "cv_accuracy": 1.0,
+    "cv_auc": 1.0,
+    "cv_f1": 1.0,
+    "test_accuracy": 1.0,
+    "test_auc": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "sample_count": 42,
+    "features": [
+      "pitch_range",
+      "shimmer",
+      "hnr",
+      "mfcc_7_std"
+    ]
+  }
+}
