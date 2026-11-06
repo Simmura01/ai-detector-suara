@@ -8,5 +8,5 @@ start http://localhost:3000
 echo Server berjalan di http://localhost:3000
 echo Tekan Ctrl+C untuk menghentikan server.
 echo.
-python -m http.server 3000 --directory www
+python -m http.server 3000 --directory docs
 pause

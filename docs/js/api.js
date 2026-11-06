@@ -7,7 +7,10 @@
 // ⚠️ DEPLOY: Ganti URL ini dengan URL Render.com kamu setelah deploy backend
 // Contoh: const API_BASE_URL = "https://guardivoice-api.onrender.com";
 // Untuk development lokal: gunakan "http://localhost:8000"
-const API_BASE_URL = "https://GANTI-DENGAN-URL-RENDER-KAMU.onrender.com";
+// Otomatis deteksi: lokal pakai localhost, production pakai URL deploy
+const API_BASE_URL = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+  ? "http://localhost:8000"
+  : "https://simmura.pythonanywhere.com";
 
 // ─────────────────────────────────────────────────────────────
 // STATE MANAGEMENT
