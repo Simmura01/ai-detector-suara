@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>GuardiVoice — Presentasi AI Voice Detection (Algoritma BAMBS)</title>
+    <title>GuardiVoice — Detektor Keaslian Suara AI (Prototype)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -29,12 +29,10 @@
             to { opacity: 1; transform: translateY(0); } 
         }
 
-        /* Kartu Parameter & Data */
         .param-card { transition: all 0.2s ease; cursor: pointer; }
         .param-card:hover { border-color: #94a3b8; }
         .param-card.opened { border-color: #2563eb; background-color: #ffffff; box-shadow: 0 4px 15px rgba(0,0,0,0.06); }
 
-        /* Simulasi */
         .sim-box { transition: all 0.3s ease; }
         .sim-box.active { border-color: #2563eb; background-color: #eff6ff; box-shadow: 0 4px 20px -2px rgba(37, 99, 235, 0.15); }
         .sim-line-h { transition: width 0.5s ease; }
@@ -43,13 +41,13 @@
 </head>
 <body class="flex flex-col justify-between select-none bg-grid">
 
-    <!-- Top Navigation Bar (Identik dengan format Gelang TKI Web) -->
+    <!-- Top Navigation Bar -->
     <header class="bg-white/95 backdrop-blur border-b border-slate-200 px-4 md:px-10 py-3 flex justify-between items-center shrink-0 z-10">
         <div class="flex items-center space-x-2">
             <span class="w-2.5 h-2.5 rounded-full bg-blue-600 inline-block animate-pulse"></span>
             <span class="text-xs md:text-sm font-bold text-slate-800 tracking-tight">GuardiVoice</span>
             <span class="hidden sm:inline text-slate-300">|</span>
-            <span class="hidden sm:inline text-xs text-slate-500 font-medium">AI Voice Detector (Algoritma BAMBS)</span>
+            <span class="hidden sm:inline text-xs text-slate-500 font-medium">Deteksi Suara AI • Analisis Ciri Fisik Biologis</span>
         </div>
         <div class="flex items-center space-x-3">
             <a href="GuardiVoice_Presentasi_BAMBS.pptx" download class="inline-flex items-center space-x-1 px-2.5 py-1 rounded-md bg-blue-50 hover:bg-blue-100 text-[11px] font-semibold text-blue-700 border border-blue-200 transition">
@@ -63,231 +61,201 @@
         </div>
     </header>
 
-    <!-- Main Workspace (Scrollable di HP, Rata Tengah di Layar Besar) -->
+    <!-- Main Workspace -->
     <main id="main-scroll" class="flex-1 flex flex-col px-4 py-6 md:px-10 md:py-6 overflow-y-auto">
 
-        <!-- SLIDE 1: LATAR BELAKANG -->
+        <!-- SLIDE 1: MASALAH -->
         <div class="slide active flex-col items-center justify-center max-w-4xl w-full m-auto text-center py-8 md:py-12" id="slide-0">
-            <span class="mono text-xs font-semibold uppercase tracking-widest text-blue-600 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full mb-4">
-                Bagian 01
+            <span class="mono text-xs font-semibold uppercase tracking-widest text-blue-600 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full mb-3">
+                Bagian 01 • Masalah Nyata
             </span>
             <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
-                Latar Belakang & Ancaman AI Voice Cloning
+                Ketika Suara Manusia Mulai Bisa "Ditiru" Mesin
             </h2>
-            <div class="w-16 h-1 bg-blue-600 my-5 rounded-full"></div>
+            <div class="w-16 h-1 bg-blue-600 my-4 rounded-full"></div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 text-left w-full max-w-3xl">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-3 text-left w-full max-w-3xl">
                 <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
-                    <div class="w-8 h-8 rounded-lg bg-red-50 text-red-600 flex items-center justify-center font-bold text-sm mb-2">!</div>
-                    <h3 class="text-sm font-bold text-slate-900 mb-1">Maraknya Voice Cloning</h3>
+                    <span class="mono text-[10px] font-bold text-red-600 bg-red-50 px-2 py-0.5 rounded">01 • MODUS BARU</span>
+                    <h3 class="text-sm font-bold text-slate-900 mt-2 mb-1">Cukup Rekaman 3 Detik</h3>
                     <p class="text-xs text-slate-600 leading-relaxed">
-                        Hanya dengan sampel suara 3 detik, AI modern mampu menduplikasi intonasi suara manusia untuk penipuan telepon (vishing) & impersonasi darurat.
+                        Dengan mengambil potongan suara dari video media sosial (Instagram/TikTok), komputer sudah bisa membuat tiruan suara yang sangat mirip aslinya.
                     </p>
                 </div>
                 <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
-                    <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-sm mb-2">⚡</div>
-                    <h3 class="text-sm font-bold text-slate-900 mb-1">Kerugian Nyata Korban</h3>
+                    <span class="mono text-[10px] font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded">02 • KORBAN NYATA</span>
+                    <h3 class="text-sm font-bold text-slate-900 mt-2 mb-1">Penipuan Telepon Keluarga</h3>
                     <p class="text-xs text-slate-600 leading-relaxed">
-                        Keluarga dan institusi finansial terkecoh oleh telepon kloning AI yang meniru suara anak, pejabat, atau pimpinan untuk meminta uang tebusan dan transfer.
+                        Penipu menelepon orang tua dan berpura-pura menjadi anaknya yang sedang celaka atau butuh transfer uang cepat. Korban percaya karena suaranya terdengar sama persis.
                     </p>
                 </div>
                 <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
-                    <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-sm mb-2">?</div>
-                    <h3 class="text-sm font-bold text-slate-900 mb-1">Detektor Black-Box Lemah</h3>
+                    <span class="mono text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">03 • TANTANGAN</span>
+                    <h3 class="text-sm font-bold text-slate-900 mt-2 mb-1">Telinga Manusia Terkecoh</h3>
                     <p class="text-xs text-slate-600 leading-relaxed">
-                        Detektor konvensional menggunakan deep learning hitam (black-box) yang rawan halusinasi, tidak dapat dipertanggungjawabkan forensiknya, dan sulit dipahami juri.
+                        Telinga kita tidak mampu lagi membedakan suara asli vs rekaman buatan AI. Kita butuh alat bantu ilmiah yang bisa melihat perbedaan getaran suara sampai ke tingkat gelombang.
                     </p>
                 </div>
             </div>
         </div>
 
-        <!-- SLIDE 2: SOLUSI -->
+        <!-- SLIDE 2: IDE SOLUSI (UMUM & SEDERHANA) -->
         <div class="slide flex-col items-center justify-center max-w-4xl w-full m-auto text-center py-8 md:py-12" id="slide-1">
-            <span class="mono text-xs font-semibold uppercase tracking-widest text-blue-600 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full mb-4">
-                Bagian 02
+            <span class="mono text-xs font-semibold uppercase tracking-widest text-blue-600 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full mb-3">
+                Bagian 02 • Ide Solusi
             </span>
             <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
-                Solusi: GuardiVoice & Algoritma BAMBS
+                Solusi: Memeriksa Tanda Fisik Suara Manusia
             </h2>
-            <div class="w-16 h-1 bg-blue-600 my-5 rounded-full"></div>
+            <div class="w-16 h-1 bg-blue-600 my-4 rounded-full"></div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 text-left w-full max-w-3xl">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-3 text-left w-full max-w-3xl">
                 <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
-                    <span class="mono text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">INOVASI 01</span>
-                    <h3 class="text-sm font-bold text-slate-900 mt-2 mb-1">Bio-Acoustic Multi-Boundary</h3>
+                    <span class="mono text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">LOGIKA KITA</span>
+                    <h3 class="text-sm font-bold text-slate-900 mt-2 mb-1">Bukan Menebak, Tapi Menguji</h3>
                     <p class="text-xs text-slate-600 leading-relaxed">
-                        Alih-alih menebak, BAMBS menguji audio terhadap <b>4 batasan biologis laring & pita suara manusia</b> yang tidak mampu direplikasi sempurna oleh neural vocoder AI.
+                        Alih-alih menyuruh AI menebak secara buta, sistem kami memeriksa apakah suara tersebut mematuhi hukum kerja organ tubuh manusia (seperti paru-paru dan pita suara).
                     </p>
                 </div>
                 <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
-                    <span class="mono text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">INOVASI 02</span>
-                    <h3 class="text-sm font-bold text-slate-900 mt-2 mb-1">100% Explainable AI (XAI)</h3>
+                    <span class="mono text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">ANALOGI</span>
+                    <h3 class="text-sm font-bold text-slate-900 mt-2 mb-1">Seperti "Dokter THT Digital"</h3>
                     <p class="text-xs text-slate-600 leading-relaxed">
-                        Keputusan tidak berupa tebakan probabilitas buta. Setiap vonis membuktikan parameter mana yang melanggar hukum akustik vokal manusia secara terperinci.
+                        Sistem bekerja seperti tes kesehatan suara: mengecek kelenturan nada, hembusan napas, dan getaran tenggorokan. Mesin komputer tidak bernapas, sehingga selalu meninggalkan jejak palsu.
                     </p>
                 </div>
                 <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
-                    <span class="mono text-[10px] font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded">INOVASI 03</span>
-                    <h3 class="text-sm font-bold text-slate-900 mt-2 mb-1">Ringan & Siap Produksi</h3>
+                    <span class="mono text-[10px] font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded">FLEKSIBEL</span>
+                    <h3 class="text-sm font-bold text-slate-900 mt-2 mb-1">Tahap Prototype & Modular</h3>
                     <p class="text-xs text-slate-600 leading-relaxed">
-                        Tanpa beban GPU ratusan watt. Dapat dijalankan cepat di browser, Android, server cloud gratis, maupun embedded device untuk verifikasi seketika.
+                        Sistem ini dirancang sebagai prototype terbuka. Algoritma pembandingnya bisa ditingkatkan atau disesuaikan dengan formula baru seiring perkembangan riset suara ke depan.
                     </p>
                 </div>
             </div>
         </div>
 
-        <!-- SLIDE 3: 4 BATASAN FISIK AKUSTIK (TAB SWITCHER) -->
+        <!-- SLIDE 3: 4 CIRI FISIK SUARA (TAB SWITCHER) -->
         <div class="slide flex-col max-w-6xl w-full m-auto" id="slide-2">
             <div class="mb-4 flex flex-col sm:flex-row sm:justify-between sm:items-end gap-3">
                 <div>
-                    <p class="mono text-xs font-semibold text-blue-600 uppercase tracking-wider mb-0.5">Bagian 03</p>
-                    <h2 class="text-xl md:text-2xl font-bold text-slate-900">4 Batasan Fisik Akustik Kunci (BAMBS)</h2>
+                    <p class="mono text-xs font-semibold text-blue-600 uppercase tracking-wider mb-0.5">Bagian 03 • Parameter Fisik</p>
+                    <h2 class="text-xl md:text-2xl font-bold text-slate-900">4 Ciri Kunci yang Membedakan Manusia vs AI</h2>
                 </div>
                 
-                <!-- Tab Switcher Responsif (Identik format Gelang TKI) -->
                 <div class="grid grid-cols-2 sm:inline-flex bg-slate-200/80 p-1 rounded-lg border border-slate-300 w-full sm:w-auto">
                     <button onclick="switchTab('vokal')" id="tab-vokal" class="px-3 py-2 sm:py-1.5 rounded-md text-xs font-semibold bg-white text-slate-900 shadow-sm transition cursor-pointer text-center">
-                        Dinamika Vokal (F0 & Shimmer)
+                        Kelenturan & Getaran (Nada & Volume)
                     </button>
                     <button onclick="switchTab('spektral')" id="tab-spektral" class="px-3 py-2 sm:py-1.5 rounded-md text-xs font-semibold text-slate-600 hover:text-slate-900 transition cursor-pointer text-center">
-                        Resonansi Spektral (HNR & MFCC-7)
+                        Napas & Rongga Mulut (HNR & Resonansi)
                     </button>
                 </div>
             </div>
 
-            <!-- Konten Tab 1: Vokal -->
+            <!-- Konten Tab 1 -->
             <div id="content-vokal" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 
-                <!-- Parameter 1: Pitch Range -->
                 <div onclick="toggleSpec(this)" class="param-card bg-white border border-slate-200 rounded-xl p-4">
                     <div class="flex justify-between items-center mb-2">
-                        <span class="mono text-[11px] font-semibold text-slate-400">PARAM-01 / NADA</span>
-                        <span class="text-xs text-blue-600 font-medium spec-indicator">+ Penjelasan Fisika</span>
+                        <span class="mono text-[11px] font-semibold text-slate-400">CIRI 01 / NADA SUARA</span>
+                        <span class="text-xs text-blue-600 font-medium spec-indicator">+ Penjelasan Mudah</span>
                     </div>
                     <div class="h-28 bg-slate-50 border border-slate-100 rounded-lg mb-3 flex items-center justify-center p-2">
-                        <!-- SVG Visualisasi Pitch Modulation -->
                         <svg viewBox="0 0 200 90" class="h-24 w-auto">
                             <rect width="200" height="90" rx="4" fill="#f8fafc"/>
                             <line x1="20" y1="45" x2="180" y2="45" stroke="#cbd5e1" stroke-dasharray="2,2"/>
-                            <!-- Kontur Manusia (Dinamis Luas) -->
                             <path d="M 25 60 C 45 20, 65 75, 95 30 C 120 70, 145 25, 175 55" stroke="#2563eb" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-                            <!-- Kontur AI (Datar Monoton) -->
                             <path d="M 25 43 C 60 41, 100 46, 140 43 L 175 44" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,2" fill="none"/>
-                            <text x="30" y="22" font-family="monospace" font-size="6.5" font-weight="bold" fill="#2563eb">MANUSIA: DINAMIS</text>
-                            <text x="120" y="80" font-family="monospace" font-size="6.5" font-weight="bold" fill="#dc2626">AI: MONOTON</text>
+                            <text x="30" y="22" font-family="monospace" font-size="6.5" font-weight="bold" fill="#2563eb">MANUSIA: NAIK-TURUN LENTUR</text>
+                            <text x="120" y="80" font-family="monospace" font-size="6.5" font-weight="bold" fill="#dc2626">AI: DATAR & KAKU</text>
                         </svg>
                     </div>
-                    <div class="flex justify-between items-baseline">
-                        <h3 class="text-sm font-bold text-slate-900">Rentang Dinamika Nada (Pitch Range)</h3>
-                        <span class="mono text-[10px] font-semibold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">Bobot 18.9%</span>
-                    </div>
-                    <p class="text-xs text-slate-500 mt-1">Ambang Alami: <b class="text-slate-700">≥ 132.56 Hz</b> (AI cenderung &lt; 132 Hz)</p>
+                    <h3 class="text-sm font-bold text-slate-900">1. Kelenturan Nada (Pitch Range / F0)</h3>
+                    <p class="text-xs text-slate-500 mt-1">Analogi: <b>"Roller Coaster Nada"</b> saat manusia berbicara.</p>
                     <div class="spec-content hidden mt-3 pt-3 border-t border-slate-100">
                         <p class="text-xs text-slate-600 leading-relaxed">
-                            Otot krikotiroid laring manusia terus menyesuaikan tegangan pita suara secara mikro dan makro saat berbicara sehingga rentang nadanya lebar. Sintesis TTS AI cenderung membatasi deviasi frekuensi dasar (F0) agar tidak terjadi distorsi nada artifisial, menghasilkan intonasi vokal yang terlalu stabil/monoton.
+                            Manusia kalau bicara ada intonasi naik dan turun secara ekspresif karena pita suaranya fleksibel. Sebaliknya, suara buatan AI seringkali terlalu rapi dan kaku sehingga rentang nadanya jauh lebih sempit (monoton).
                         </p>
                     </div>
                 </div>
 
-                <!-- Parameter 2: Shimmer -->
                 <div onclick="toggleSpec(this)" class="param-card bg-white border border-slate-200 rounded-xl p-4">
                     <div class="flex justify-between items-center mb-2">
-                        <span class="mono text-[11px] font-semibold text-slate-400">PARAM-02 / AMPLITUDO</span>
-                        <span class="text-xs text-blue-600 font-medium spec-indicator">+ Penjelasan Fisika</span>
+                        <span class="mono text-[11px] font-semibold text-slate-400">CIRI 02 / KEKUATAN GETARAN</span>
+                        <span class="text-xs text-blue-600 font-medium spec-indicator">+ Penjelasan Mudah</span>
                     </div>
                     <div class="h-28 bg-slate-50 border border-slate-100 rounded-lg mb-3 flex items-center justify-center p-2">
-                        <!-- SVG Visualisasi Shimmer Micro-Perturbation -->
                         <svg viewBox="0 0 200 90" class="h-24 w-auto">
                             <rect width="200" height="90" rx="4" fill="#f8fafc"/>
-                            <!-- Peak-to-peak amplitude fluctuation -->
                             <line x1="25" y1="45" x2="175" y2="45" stroke="#cbd5e1"/>
                             <path d="M 30 45 L 40 18 L 50 72 L 60 22 L 70 68 L 80 20 L 90 70 L 100 15 L 110 75 L 120 25 L 130 65 L 140 18 L 150 72 L 160 24 L 170 45" stroke="#059669" stroke-width="1.8" fill="none"/>
-                            <!-- AI Vocoder Glitch Highlight -->
                             <circle cx="100" cy="15" r="4.5" fill="none" stroke="#dc2626" stroke-width="1.5"/>
-                            <text x="100" y="10" font-family="monospace" font-size="6" font-weight="bold" fill="#dc2626" text-anchor="middle">ARTIFIK VOCODER</text>
-                            <text x="35" y="82" font-family="monospace" font-size="6" fill="#059669">PERTURBASI AMPLITUDO SIKLUS</text>
+                            <text x="100" y="10" font-family="monospace" font-size="6" font-weight="bold" fill="#dc2626" text-anchor="middle">LOMPATAN VOLUME MIKRO</text>
+                            <text x="35" y="82" font-family="monospace" font-size="6" fill="#059669">DENYUT GETARAN ALAMI</text>
                         </svg>
                     </div>
-                    <div class="flex justify-between items-baseline">
-                        <h3 class="text-sm font-bold text-slate-900">Perturbasi Mikro-Amplitudo (Shimmer)</h3>
-                        <span class="mono text-[10px] font-semibold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">Bobot 21.7%</span>
-                    </div>
-                    <p class="text-xs text-slate-500 mt-1">Ambang Alami: <b class="text-slate-700">≤ 0.1163</b> (AI cenderung &gt; 0.1163)</p>
+                    <h3 class="text-sm font-bold text-slate-900">2. Kestabilan Volume Getaran (Shimmer)</h3>
+                    <p class="text-xs text-slate-500 mt-1">Analogi: <b>"Kestabilan Denyut"</b> getaran pita suara.</p>
                     <div class="spec-content hidden mt-3 pt-3 border-t border-slate-100">
                         <p class="text-xs text-slate-600 leading-relaxed">
-                            Shimmer mengukur konsistensi energi amplitudo antara siklus getaran pita suara yang berurutan. Neural vocoder (seperti HiFi-GAN) mengonversi spektrogram menjadi gelombang suara titik demi titik, meninggalkan artifak lompatan energi mikroskopis yang menghasilkan nilai shimmer tinggi tak wajar.
+                            Ketika pita suara manusia bergetar, volume suara dari satu getaran ke getaran berikutnya berubah dengan mulus. AI yang dibuat dari rumus matematika sering "tersedak" mikroskopis: ada lonjakan volume sangat kecil yang tidak wajar.
                         </p>
                     </div>
                 </div>
 
             </div>
 
-            <!-- Konten Tab 2: Spektral -->
+            <!-- Konten Tab 2 -->
             <div id="content-spektral" class="hidden grid-cols-1 sm:grid-cols-2 gap-4">
                 
-                <!-- Parameter 3: HNR -->
                 <div onclick="toggleSpec(this)" class="param-card bg-white border border-slate-200 rounded-xl p-4">
                     <div class="flex justify-between items-center mb-2">
-                        <span class="mono text-[11px] font-semibold text-slate-400">PARAM-03 / RESPIRASI</span>
-                        <span class="text-xs text-blue-600 font-medium spec-indicator">+ Penjelasan Fisika</span>
+                        <span class="mono text-[11px] font-semibold text-slate-400">CIRI 03 / NAFAS & UDARA</span>
+                        <span class="text-xs text-blue-600 font-medium spec-indicator">+ Penjelasan Mudah</span>
                     </div>
                     <div class="h-28 bg-slate-50 border border-slate-100 rounded-lg mb-3 flex items-center justify-center p-2">
-                        <!-- SVG Visualisasi Harmonic vs Noise -->
                         <svg viewBox="0 0 200 90" class="h-24 w-auto">
                             <rect width="200" height="90" rx="4" fill="#f8fafc"/>
                             <line x1="20" y1="75" x2="180" y2="75" stroke="#475569" stroke-width="1.5"/>
-                            <!-- Harmonics Bars -->
                             <rect x="35" y="25" width="8" height="50" fill="#2563eb" rx="1"/>
                             <rect x="65" y="35" width="8" height="40" fill="#2563eb" rx="1"/>
                             <rect x="95" y="45" width="8" height="30" fill="#2563eb" rx="1"/>
                             <rect x="125" y="55" width="8" height="20" fill="#2563eb" rx="1"/>
-                            <rect x="155" y="62" width="8" height="13" fill="#2563eb" rx="1"/>
-                            <!-- Noise Floor -->
                             <line x1="20" y1="65" x2="180" y2="65" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,3"/>
-                            <text x="180" y="62" font-family="monospace" font-size="5.5" font-weight="bold" fill="#dc2626" text-anchor="end">NOISE RESIDU</text>
-                            <text x="35" y="20" font-family="monospace" font-size="6" font-weight="bold" fill="#2563eb">HARMONIK MURNI</text>
+                            <text x="180" y="62" font-family="monospace" font-size="5.5" font-weight="bold" fill="#dc2626" text-anchor="end">DESIS SYNTHESIZER</text>
+                            <text x="35" y="20" font-family="monospace" font-size="6" font-weight="bold" fill="#2563eb">HEMBUSAN PARU-PARU</text>
                         </svg>
                     </div>
-                    <div class="flex justify-between items-baseline">
-                        <h3 class="text-sm font-bold text-slate-900">Harmonic-to-Noise Ratio (HNR)</h3>
-                        <span class="mono text-[10px] font-semibold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">Bobot 20.1%</span>
-                    </div>
-                    <p class="text-xs text-slate-500 mt-1">Ambang Alami: <b class="text-slate-700">≥ 2.1655 dB</b> (AI cenderung &lt; 2.1655 dB)</p>
+                    <h3 class="text-sm font-bold text-slate-900">3. Hembusan Napas Alami (Harmonic-to-Noise)</h3>
+                    <p class="text-xs text-slate-500 mt-1">Analogi: <b>"Hembusan Udara Paru-Paru"</b>.</p>
                     <div class="spec-content hidden mt-3 pt-3 border-t border-slate-100">
                         <p class="text-xs text-slate-600 leading-relaxed">
-                            Pita suara manusia menghasilkan harmonik vokal bersih yang disuplai oleh aliran respirasi paru-paru yang stabil. Suara AI tidak memiliki saluran napas fisik biologis, sehingga spektrum harmoniknya sering tercemar oleh noise kuantisasi spektral dari jaringan konvolusi generator.
+                            Manusia berbicara menggunakan bantuan udara yang dihembuskan dari paru-paru, sehingga suaranya memiliki perbandingan vokal dan desis napas yang alami. Mesin AI tidak punya paru-paru, sehingga sering menghasilkan dengungan artifisial.
                         </p>
                     </div>
                 </div>
 
-                <!-- Parameter 4: MFCC-7 Std -->
                 <div onclick="toggleSpec(this)" class="param-card bg-white border border-slate-200 rounded-xl p-4">
                     <div class="flex justify-between items-center mb-2">
-                        <span class="mono text-[11px] font-semibold text-slate-400">PARAM-04 / FORMAN</span>
-                        <span class="text-xs text-blue-600 font-medium spec-indicator">+ Penjelasan Fisika</span>
+                        <span class="mono text-[11px] font-semibold text-slate-400">CIRI 04 / BENTUK MULUT</span>
+                        <span class="text-xs text-blue-600 font-medium spec-indicator">+ Penjelasan Mudah</span>
                     </div>
                     <div class="h-28 bg-slate-50 border border-slate-100 rounded-lg mb-3 flex items-center justify-center p-2">
-                        <!-- SVG Visualisasi MFCC Formant Envelope -->
                         <svg viewBox="0 0 200 90" class="h-24 w-auto">
                             <rect width="200" height="90" rx="4" fill="#f8fafc"/>
-                            <!-- Mel-Filter Banks Envelope -->
                             <path d="M 20 75 Q 40 25 60 75" fill="none" stroke="#94a3b8" stroke-width="1.2"/>
                             <path d="M 50 75 Q 75 30 100 75" fill="none" stroke="#94a3b8" stroke-width="1.2"/>
                             <path d="M 85 75 Q 115 35 145 75" fill="none" stroke="#2563eb" stroke-width="2.2"/>
-                            <path d="M 125 75 Q 160 45 185 75" fill="none" stroke="#94a3b8" stroke-width="1.2"/>
                             <circle cx="115" cy="35" r="3.5" fill="#2563eb"/>
-                            <text x="115" y="27" font-family="monospace" font-size="6.5" font-weight="bold" fill="#2563eb" text-anchor="middle">MFCC KOEF-7 (DISPERSI)</text>
-                            <text x="115" y="83" font-family="monospace" font-size="5.5" fill="#64748b" text-anchor="middle">FILTER RONGGA FARING & MULUT</text>
+                            <text x="115" y="27" font-family="monospace" font-size="6.5" font-weight="bold" fill="#2563eb" text-anchor="middle">PANTULAN SUARA FARING</text>
+                            <text x="115" y="83" font-family="monospace" font-size="5.5" fill="#64748b" text-anchor="middle">RESONANSI MULUT MANUSIA</text>
                         </svg>
                     </div>
-                    <div class="flex justify-between items-baseline">
-                        <h3 class="text-sm font-bold text-slate-900">Dispersi Formant Spektral (MFCC-7)</h3>
-                        <span class="mono text-[10px] font-semibold text-purple-700 bg-purple-50 px-2 py-0.5 rounded font-bold">Bobot 39.3% (KUNCI)</span>
-                    </div>
-                    <p class="text-xs text-slate-500 mt-1">Ambang Alami: <b class="text-slate-700">≤ 14.484</b> (AI cenderung &gt; 14.484)</p>
+                    <h3 class="text-sm font-bold text-slate-900">4. Pantulan Rongga Mulut (MFCC / Formant)</h3>
+                    <p class="text-xs text-slate-500 mt-1">Analogi: <b>"Gema di Ruang Tertutup"</b> rongga tenggorokan.</p>
                     <div class="spec-content hidden mt-3 pt-3 border-t border-slate-100">
                         <p class="text-xs text-slate-600 leading-relaxed">
-                            Koefisien MFCC ke-7 memodelkan resonansi akustik rongga faring dan rongga mulut manusia pada frekuensi transisi menengah-tinggi (~2500–3500 Hz). Inilah batasan paling sensitif (bobot 39.3%): model AI sering gagal menjaga kestabilan transfer fungsi saluran vokal, menyebabkan variasi dispersi melompat drastis.
+                            Bentuk lidah, bibir, dan dinding tenggorokan manusia memantulkan suara dengan rumus alami yang rumit. Komputer AI sangat sering gagal meniru pantulan rongga mulut ini secara konsisten di frekuensi tertentu.
                         </p>
                     </div>
                 </div>
@@ -295,122 +263,107 @@
             </div>
         </div>
 
-        <!-- SLIDE 4: BEDAH TAMPILAN APLIKASI GUARDIVOICE -->
+        <!-- SLIDE 4: BEDAH APLIKASI WEB GUARDIVOICE -->
         <div class="slide flex-col max-w-6xl w-full m-auto" id="slide-3">
             <div class="mb-4 flex flex-col sm:flex-row sm:justify-between sm:items-end gap-2">
                 <div>
-                    <p class="mono text-xs font-semibold text-blue-600 uppercase tracking-wider mb-0.5">Bagian 04</p>
-                    <h2 class="text-xl md:text-2xl font-bold text-slate-900">Bedah Antarmuka Web App GuardiVoice</h2>
+                    <p class="mono text-xs font-semibold text-blue-600 uppercase tracking-wider mb-0.5">Bagian 04 • Antarmuka</p>
+                    <h2 class="text-xl md:text-2xl font-bold text-slate-900">Desain Aplikasi Web: Dibuat Sederhana untuk Siapapun</h2>
                 </div>
-                <span class="text-xs text-slate-500">Uji tombol di bawah mockup untuk melihat respons instan</span>
+                <span class="text-xs text-slate-500">Uji tombol di bawah untuk mencoba responsnya</span>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
                 
-                <!-- Kolom Kiri: Mockup Persis Tampilan GuardiVoice Web App -->
                 <div class="lg:col-span-6 flex flex-col items-center">
                     <div class="w-full max-w-md bg-[#0f172a] rounded-2xl p-4 shadow-2xl border border-slate-800 text-slate-100 text-xs">
                         
-                        <!-- Header Mockup -->
                         <div class="flex items-center justify-between pb-3 border-b border-slate-800">
                             <div class="flex items-center space-x-2">
                                 <div class="w-6 h-6 rounded-md bg-blue-600 flex items-center justify-center font-black text-[10px] text-white">GV</div>
                                 <span class="font-extrabold tracking-tight text-white text-sm">GuardiVoice</span>
                             </div>
-                            <span class="mono text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded">BAMBS Online</span>
+                            <span class="mono text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded">Sistem Siap</span>
                         </div>
 
-                        <!-- Banner Slot Gambar -->
                         <div class="mt-3 bg-slate-800/60 rounded-xl p-3 border border-slate-700/50 flex items-center justify-center text-center">
-                            <p class="text-[11px] text-slate-400">Slot Banner Visual / Infografis Lomba</p>
+                            <p class="text-[11px] text-slate-400">Tempat Rekam Suara atau Unggah File (.wav / .mp3)</p>
                         </div>
 
                         <!-- Dynamic Verdict Box -->
                         <div id="mock-verdict-box" class="mt-3 bg-emerald-950/40 border border-emerald-500/40 rounded-xl p-3.5 transition-all">
                             <div class="flex items-center justify-between">
                                 <span id="mock-verdict-title" class="font-bold text-sm text-emerald-400">Terdeteksi: Suara Manusia Asli</span>
-                                <span id="mock-confidence-pill" class="mono text-[11px] font-bold text-emerald-300 bg-emerald-900/50 px-2 py-0.5 rounded">94.8% Yakin</span>
+                                <span id="mock-confidence-pill" class="mono text-[11px] font-bold text-emerald-300 bg-emerald-900/50 px-2 py-0.5 rounded">95% Yakin</span>
                             </div>
                             <p id="mock-verdict-desc" class="text-[11px] text-slate-300 mt-1 leading-snug">
-                                Modulasi nada fleksibel dan getaran pita suara selaras dengan fisiologi biologis manusia.
+                                Getaran pita suara dan hembusan napas alami manusia terdeteksi dengan jelas.
                             </p>
-                            <!-- Mini Progress Bar -->
                             <div class="w-full bg-slate-800 h-1.5 rounded-full mt-2.5 overflow-hidden">
-                                <div id="mock-bar" class="h-full bg-emerald-500 transition-all duration-300" style="width: 94%;"></div>
+                                <div id="mock-bar" class="h-full bg-emerald-500 transition-all duration-300" style="width: 95%;"></div>
                             </div>
                         </div>
 
-                        <!-- 4 Batasan Ringkas Grid -->
+                        <!-- 4 Batasan Ringkas -->
                         <div class="mt-3 grid grid-cols-2 gap-2">
                             <div class="bg-slate-900/90 border border-slate-800 p-2 rounded-lg">
-                                <div class="text-[9px] text-slate-400">PITCH RANGE</div>
-                                <div id="mock-v-pitch" class="mono font-bold text-emerald-400 text-xs">168.4 Hz (Alami)</div>
+                                <div class="text-[9px] text-slate-400">KELENTURAN NADA</div>
+                                <div id="mock-v-pitch" class="mono font-bold text-emerald-400 text-xs">Alami (Lentur)</div>
                             </div>
                             <div class="bg-slate-900/90 border border-slate-800 p-2 rounded-lg">
-                                <div class="text-[9px] text-slate-400">SHIMMER</div>
-                                <div id="mock-v-shimmer" class="mono font-bold text-emerald-400 text-xs">0.0792 (Alami)</div>
+                                <div class="text-[9px] text-slate-400">KESTABILAN GETARAN</div>
+                                <div id="mock-v-shimmer" class="mono font-bold text-emerald-400 text-xs">Alami (Halus)</div>
                             </div>
                             <div class="bg-slate-900/90 border border-slate-800 p-2 rounded-lg">
-                                <div class="text-[9px] text-slate-400">HNR</div>
-                                <div id="mock-v-hnr" class="mono font-bold text-emerald-400 text-xs">3.4120 dB (Alami)</div>
+                                <div class="text-[9px] text-slate-400">HEMBUSAN NAPAS</div>
+                                <div id="mock-v-hnr" class="mono font-bold text-emerald-400 text-xs">Alami (Ada Paru-paru)</div>
                             </div>
                             <div class="bg-slate-900/90 border border-slate-800 p-2 rounded-lg">
-                                <div class="text-[9px] text-slate-400">MFCC-7 DISPERSI</div>
-                                <div id="mock-v-mfcc" class="mono font-bold text-emerald-400 text-xs">11.1820 (Alami)</div>
+                                <div class="text-[9px] text-slate-400">PANTULAN MULUT</div>
+                                <div id="mock-v-mfcc" class="mono font-bold text-emerald-400 text-xs">Alami (Resonansi Wajar)</div>
                             </div>
                         </div>
 
-                        <!-- Interaktif Simulator Buttons -->
+                        <!-- Simulator Buttons -->
                         <div class="mt-3.5 pt-3 border-t border-slate-800 grid grid-cols-2 gap-2">
                             <button onclick="mockDemoVoice('human')" class="py-2 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-[11px] transition cursor-pointer text-center shadow">
-                                Uji Suara Manusia
+                                Coba Suara Manusia
                             </button>
                             <button onclick="mockDemoVoice('ai')" class="py-2 px-3 rounded-lg bg-red-600 hover:bg-red-500 text-white font-bold text-[11px] transition cursor-pointer text-center shadow">
-                                Uji Suara Kloning AI
+                                Coba Suara AI Kloning
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Kolom Kanan: Penjelasan 4 Bagian Antarmuka Web App -->
                 <div class="lg:col-span-6 space-y-2.5">
                     <div class="bg-white border border-slate-200 rounded-xl p-3.5 shadow-sm">
                         <div class="flex justify-between items-center gap-2">
-                            <span class="mono text-xs font-bold text-blue-600">01 / HEADER & STATUS API</span>
-                            <span class="text-[10px] bg-slate-100 px-2 py-0.5 rounded text-slate-600">Konektivitas</span>
+                            <span class="mono text-xs font-bold text-blue-600">01 / AREA MASUKAN SUARA</span>
+                            <span class="text-[10px] bg-slate-100 px-2 py-0.5 rounded text-slate-600">Mudah & Cepat</span>
                         </div>
                         <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                            Menampilkan branding resmi <b>GuardiVoice</b> dan indikator kesiapan model BAMBS secara transparan tanpa mengalihkan fokus pengguna.
+                            Pengguna cukup merekam suara langsung lewat mikrofon HP atau mengunggah rekaman voice note yang mencurigakan.
                         </p>
                     </div>
 
                     <div class="bg-white border border-slate-200 rounded-xl p-3.5 shadow-sm">
                         <div class="flex justify-between items-center gap-2">
-                            <span class="mono text-xs font-bold text-blue-600">02 / AREA INPUT AUDIO FLEKSIBEL</span>
-                            <span class="text-[10px] bg-slate-100 px-2 py-0.5 rounded text-slate-600">Multi-Modal Input</span>
+                            <span class="mono text-xs font-bold text-emerald-600">02 / HASIL LANGSUNG JELAS</span>
+                            <span class="text-[10px] bg-emerald-50 px-2 py-0.5 rounded text-emerald-700">Untuk Orang Awam</span>
                         </div>
                         <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                            Mendukung dua metode uji: <b>rekam suara langsung</b> melalui mikrofon browser (untuk verifikasi telepon/bicara live) dan <b>upload berkas rekaman</b> (.wav, .mp3).
+                            Tidak menampilkan rumus rumit di halaman depan. Pengguna langsung tahu hasilnya lewat warna dan teks: <b>Hijau (Manusia)</b> atau <b>Merah (AI)</b>.
                         </p>
                     </div>
 
                     <div class="bg-white border border-slate-200 rounded-xl p-3.5 shadow-sm">
                         <div class="flex justify-between items-center gap-2">
-                            <span class="mono text-xs font-bold text-emerald-600">03 / VONIS UTAMA YANG RINGKAS</span>
-                            <span class="text-[10px] bg-emerald-50 px-2 py-0.5 rounded text-emerald-700">Hasil Cepat</span>
+                            <span class="mono text-xs font-bold text-purple-600">03 / BUKTI BISA DIBUKA (OPSIONAL)</span>
+                            <span class="text-[10px] bg-purple-50 px-2 py-0.5 rounded text-purple-700">Untuk Juri / Pakar</span>
                         </div>
                         <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                            Dirancang khusus sesuai masukan evaluasi lomba: juri dan pengguna awam langsung melihat hasil konklusif (Manusia vs AI) serta persentase keyakinan tanpa kebingungan teknis.
-                        </p>
-                    </div>
-
-                    <div class="bg-white border border-slate-200 rounded-xl p-3.5 shadow-sm">
-                        <div class="flex justify-between items-center gap-2">
-                            <span class="mono text-xs font-bold text-purple-600">04 / DIAGNOSA 4 BATASAN AKUSTIK</span>
-                            <span class="text-[10px] bg-purple-50 px-2 py-0.5 rounded text-purple-700">Forensik XAI</span>
-                        </div>
-                        <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                            Dapat diperluas (*collapsible*) untuk tim juri dan akademisi: memperlihatkan nilai eksak Pitch, Shimmer, HNR, dan MFCC-7 berbanding ambang batas biologis manusia.
+                            Jika juri lomba atau pihak berwenang butuh bukti teknis, mereka bisa membuka menu "Analisis Mendalam" untuk melihat detail angka 4 ciri suara tadi.
                         </p>
                     </div>
                 </div>
@@ -418,55 +371,49 @@
             </div>
         </div>
 
-        <!-- SLIDE 5: MEKANISME KERJA & BENTUK DATA (4 TAHAPAN) -->
+        <!-- SLIDE 5: CARA KERJA SISTEM (Langkah Simpel) -->
         <div class="slide flex-col max-w-6xl w-full m-auto" id="slide-4">
             <div class="mb-4 flex flex-col sm:flex-row sm:justify-between sm:items-end gap-2">
                 <div>
-                    <p class="mono text-xs font-semibold text-blue-600 uppercase tracking-wider mb-0.5">Bagian 05</p>
-                    <h2 class="text-xl md:text-2xl font-bold text-slate-900">Mekanisme Kerja & Bentuk Pengolahan Data</h2>
+                    <p class="mono text-xs font-semibold text-blue-600 uppercase tracking-wider mb-0.5">Bagian 05 • Alur Proses</p>
+                    <h2 class="text-xl md:text-2xl font-bold text-slate-900">4 Langkah Mudah: Dari Rekaman Hingga Hasil</h2>
                 </div>
-                <span class="text-xs text-slate-500">Sentuh tahapan untuk melihat wujud format data komputasi</span>
+                <span class="text-xs text-slate-500">Sentuh tahapan untuk melihat penjelasannya</span>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 
-                <!-- Tahap 1 -->
                 <div onclick="toggleSpec(this)" class="param-card bg-white border border-slate-200 rounded-xl p-4 md:p-5 flex flex-col justify-between">
                     <div>
                         <div class="flex justify-between items-center mb-3">
-                            <span class="mono text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded border border-blue-100">TAHAP 01</span>
-                            <span class="text-xs text-blue-600 font-medium spec-indicator">+ Data</span>
+                            <span class="mono text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded border border-blue-100">LANGKAH 1</span>
+                            <span class="text-xs text-blue-600 font-medium spec-indicator">+ Penjelasan</span>
                         </div>
                         <div class="h-28 bg-slate-50 border border-slate-100 rounded-lg mb-3 flex items-center justify-center p-2">
                             <svg viewBox="0 0 140 90" class="h-20 w-auto">
                                 <rect width="140" height="90" rx="4" fill="#f8fafc"/>
                                 <line x1="15" y1="45" x2="125" y2="45" stroke="#94a3b8"/>
                                 <path d="M 15 45 Q 30 15 45 45 T 75 45 T 105 45 T 125 45" stroke="#2563eb" stroke-width="2" fill="none"/>
-                                <text x="70" y="78" font-family="monospace" font-size="6.5" font-weight="bold" fill="#0f172a" text-anchor="middle">RESAMPLING 22.05 kHz</text>
+                                <text x="70" y="78" font-family="monospace" font-size="6.5" font-weight="bold" fill="#0f172a" text-anchor="middle">REKAM / MASUKAN SUARA</text>
                             </svg>
                         </div>
-                        <h3 class="text-base font-bold text-slate-900">Normalisasi Sinyal</h3>
-                        <p class="text-xs text-slate-500 mt-1">Audio PCM ke Vektor 1D</p>
+                        <h3 class="text-base font-bold text-slate-900">1. Tangkap Suara</h3>
+                        <p class="text-xs text-slate-500 mt-1">Dari Mikrofon atau Berkas</p>
                     </div>
                     <div class="spec-content hidden mt-3 pt-3 border-t border-slate-100">
-                        <p class="text-xs text-slate-600 mb-2">Sinyal distandarisasi ke mono 22.050 Hz dan dikonversi menjadi array float:</p>
-                        <div class="bg-slate-900 text-slate-100 p-2.5 rounded mono text-[11px]">
-                            sample_rate = 22050<br>y = [-0.012, 0.045, ...]
-                        </div>
+                        <p class="text-xs text-slate-600 mb-1">Aplikasi menangkap gelombang suara dan merapikan formatnya agar siap diperiksa oleh sistem.</p>
                     </div>
                 </div>
 
-                <!-- Tahap 2 -->
                 <div onclick="toggleSpec(this)" class="param-card bg-white border border-slate-200 rounded-xl p-4 md:p-5 flex flex-col justify-between">
                     <div>
                         <div class="flex justify-between items-center mb-3">
-                            <span class="mono text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded border border-blue-100">TAHAP 02</span>
-                            <span class="text-xs text-blue-600 font-medium spec-indicator">+ Data</span>
+                            <span class="mono text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded border border-blue-100">LANGKAH 2</span>
+                            <span class="text-xs text-blue-600 font-medium spec-indicator">+ Penjelasan</span>
                         </div>
                         <div class="h-28 bg-slate-50 border border-slate-100 rounded-lg mb-3 flex items-center justify-center p-2">
                             <svg viewBox="0 0 140 90" class="h-20 w-auto">
                                 <rect width="140" height="90" rx="4" fill="#f8fafc"/>
-                                <!-- FFT Spectrum Bars -->
                                 <rect x="25" y="45" width="6" height="30" fill="#3b82f6"/>
                                 <rect x="35" y="25" width="6" height="50" fill="#2563eb"/>
                                 <rect x="45" y="35" width="6" height="40" fill="#3b82f6"/>
@@ -474,56 +421,45 @@
                                 <rect x="65" y="30" width="6" height="45" fill="#2563eb"/>
                                 <rect x="75" y="50" width="6" height="25" fill="#60a5fa"/>
                                 <rect x="85" y="60" width="6" height="15" fill="#93c5fd"/>
-                                <rect x="95" y="40" width="6" height="35" fill="#3b82f6"/>
-                                <rect x="105" y="65" width="6" height="10" fill="#93c5fd"/>
-                                <text x="70" y="20" font-family="monospace" font-size="6.5" font-weight="bold" fill="#1e3a8a" text-anchor="middle">STFT / FFT DOMAIN</text>
+                                <text x="70" y="20" font-family="monospace" font-size="6.5" font-weight="bold" fill="#1e3a8a" text-anchor="middle">SPEKTRUM GELOMBANG</text>
                             </svg>
                         </div>
-                        <h3 class="text-base font-bold text-slate-900">Transformasi DSP</h3>
-                        <p class="text-xs text-slate-500 mt-1">Ekstraksi Matriks Akustik</p>
+                        <h3 class="text-base font-bold text-slate-900">2. Pecah Gelombang</h3>
+                        <p class="text-xs text-slate-500 mt-1">Melihat Detail Frekuensi</p>
                     </div>
                     <div class="spec-content hidden mt-3 pt-3 border-t border-slate-100">
-                        <p class="text-xs text-slate-600 mb-2">Transformasi Fourier (STFT) membedah spektrum frekuensi & pita harmonik:</p>
-                        <div class="bg-slate-900 text-amber-300 p-2.5 rounded mono text-[11px]">
-                            STFT = Matriks 1025 x T<br>F0_contour = [142, 145, ...]
-                        </div>
+                        <p class="text-xs text-slate-600 mb-1">Gelombang suara diurai menjadi lapisan frekuensi untuk melihat getaran halus yang tak terdengar telinga.</p>
                     </div>
                 </div>
 
-                <!-- Tahap 3 -->
                 <div onclick="toggleSpec(this)" class="param-card bg-white border border-slate-200 rounded-xl p-4 md:p-5 flex flex-col justify-between">
                     <div>
                         <div class="flex justify-between items-center mb-3">
-                            <span class="mono text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded border border-blue-100">TAHAP 03</span>
-                            <span class="text-xs text-blue-600 font-medium spec-indicator">+ Data</span>
+                            <span class="mono text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded border border-blue-100">LANGKAH 3</span>
+                            <span class="text-xs text-blue-600 font-medium spec-indicator">+ Penjelasan</span>
                         </div>
                         <div class="h-28 bg-slate-50 border border-slate-100 rounded-lg mb-3 flex items-center justify-center p-2">
                             <svg viewBox="0 0 140 90" class="h-20 w-auto">
                                 <rect width="140" height="90" rx="4" fill="#f8fafc"/>
-                                <!-- 4 Boundary Icons -->
-                                <circle cx="40" cy="35" r="14" fill="#dbeafe"/><text x="40" y="38" font-family="monospace" font-size="6.5" font-weight="bold" fill="#1d4ed8" text-anchor="middle">F0</text>
-                                <circle cx="100" cy="35" r="14" fill="#fef3c7"/><text x="100" y="38" font-family="monospace" font-size="6.5" font-weight="bold" fill="#b45309" text-anchor="middle">SH</text>
-                                <circle cx="40" cy="68" r="14" fill="#dcfce7"/><text x="40" y="71" font-family="monospace" font-size="6.5" font-weight="bold" fill="#15803d" text-anchor="middle">HN</text>
-                                <circle cx="100" cy="68" r="14" fill="#f3e8ff"/><text x="100" y="71" font-family="monospace" font-size="6.5" font-weight="bold" fill="#7e22ce" text-anchor="middle">M7</text>
+                                <circle cx="40" cy="35" r="14" fill="#dbeafe"/><text x="40" y="38" font-family="monospace" font-size="6.5" font-weight="bold" fill="#1d4ed8" text-anchor="middle">NADA</text>
+                                <circle cx="100" cy="35" r="14" fill="#fef3c7"/><text x="100" y="38" font-family="monospace" font-size="6.5" font-weight="bold" fill="#b45309" text-anchor="middle">GETAR</text>
+                                <circle cx="40" cy="68" r="14" fill="#dcfce7"/><text x="40" y="71" font-family="monospace" font-size="6.5" font-weight="bold" fill="#15803d" text-anchor="middle">NAPAS</text>
+                                <circle cx="100" cy="68" r="14" fill="#f3e8ff"/><text x="100" y="71" font-family="monospace" font-size="6.5" font-weight="bold" fill="#7e22ce" text-anchor="middle">MULUT</text>
                             </svg>
                         </div>
-                        <h3 class="text-base font-bold text-slate-900">Komputasi 4 Batasan</h3>
-                        <p class="text-xs text-slate-500 mt-1">Kalkulasi Parameter Fisik</p>
+                        <h3 class="text-base font-bold text-slate-900">3. Cek Tanda Fisik</h3>
+                        <p class="text-xs text-slate-500 mt-1">Uji 4 Karakteristik Alami</p>
                     </div>
                     <div class="spec-content hidden mt-3 pt-3 border-t border-slate-100">
-                        <p class="text-xs text-slate-600 mb-2">Nilai eksak 4 batasan dihitung dan dibandingkan dengan ambang batas terkalibrasi:</p>
-                        <div class="bg-slate-900 text-sky-300 p-2.5 rounded mono text-[10px]">
-                            pitch_range: 168.4 (Alami)<br>shimmer: 0.079 (Alami)<br>hnr: 3.41 (Alami)<br>mfcc7: 11.18 (Alami)
-                        </div>
+                        <p class="text-xs text-slate-600 mb-1">Sistem memeriksa apakah getaran suara sesuai dengan kemampuan pita suara manusia normal.</p>
                     </div>
                 </div>
 
-                <!-- Tahap 4 -->
                 <div onclick="toggleSpec(this)" class="param-card bg-white border border-slate-200 rounded-xl p-4 md:p-5 flex flex-col justify-between">
                     <div>
                         <div class="flex justify-between items-center mb-3">
-                            <span class="mono text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded border border-blue-100">TAHAP 04</span>
-                            <span class="text-xs text-blue-600 font-medium spec-indicator">+ Data</span>
+                            <span class="mono text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded border border-blue-100">LANGKAH 4</span>
+                            <span class="text-xs text-blue-600 font-medium spec-indicator">+ Penjelasan</span>
                         </div>
                         <div class="h-28 bg-slate-50 border border-slate-100 rounded-lg mb-3 flex items-center justify-center p-2">
                             <svg viewBox="0 0 140 90" class="h-20 w-auto">
@@ -531,103 +467,91 @@
                                 <rect x="25" y="20" width="90" height="50" rx="6" fill="#059669"/>
                                 <circle cx="50" cy="45" r="10" fill="#ffffff"/>
                                 <path d="M 46 45 L 49 48 L 55 42" stroke="#059669" stroke-width="2" fill="none" stroke-linecap="round"/>
-                                <text x="70" y="42" font-family="sans-serif" font-size="7" font-weight="bold" fill="#ffffff">VONIS:</text>
+                                <text x="70" y="42" font-family="sans-serif" font-size="7" font-weight="bold" fill="#ffffff">HASIL:</text>
                                 <text x="70" y="52" font-family="sans-serif" font-size="6" fill="#a7f3d0">MANUSIA ASLI</text>
                             </svg>
                         </div>
-                        <h3 class="text-base font-bold text-slate-900">Vonis Berbobot</h3>
-                        <p class="text-xs text-slate-500 mt-1">Multi-Boundary Scoring</p>
+                        <h3 class="text-base font-bold text-slate-900">4. Tampilkan Vonis</h3>
+                        <p class="text-xs text-slate-500 mt-1">Hasil & Tingkat Keyakinan</p>
                     </div>
                     <div class="spec-content hidden mt-3 pt-3 border-t border-slate-100">
-                        <p class="text-xs text-slate-600 mb-2">Penjumlahan bobot menghasilkan keyakinan probabilistik transparan:</p>
-                        <div class="bg-emerald-50 border border-emerald-200 text-emerald-800 p-2.5 rounded mono text-[10px] font-semibold">
-                            Score AI: 0.00 / 1.00<br>Verdict: "Suara Manusia Asli"<br>Confidence: 94.8%
-                        </div>
+                        <p class="text-xs text-slate-600 mb-1">Aplikasi memberikan jawaban langsung: asli atau rekayasa AI, serta persentase kepastiannya.</p>
                     </div>
                 </div>
 
             </div>
         </div>
 
-        <!-- SLIDE 6: SIMULASI ALUR KERJA SISTEM (END-TO-END) -->
+        <!-- SLIDE 6: SIMULASI ALUR KERJA SISTEM -->
         <div class="slide flex-col max-w-5xl w-full m-auto" id="slide-5">
             <div class="mb-4">
-                <p class="mono text-xs font-semibold text-blue-600 uppercase tracking-wider mb-0.5">Bagian 06</p>
+                <p class="mono text-xs font-semibold text-blue-600 uppercase tracking-wider mb-0.5">Bagian 06 • Simulasi Langsung</p>
                 <h2 class="text-xl md:text-2xl font-bold text-slate-900">Simulasi Alur Kerja Sistem (End-to-End)</h2>
             </div>
 
             <div class="bg-white border border-slate-200 rounded-xl p-4 sm:p-6 md:p-8 shadow-sm">
                 <div class="flex flex-col md:flex-row items-center justify-between gap-2 md:gap-4 my-2">
                     
-                    <!-- Blok 1: Audio Input -->
                     <div id="node-audio" class="sim-box bg-slate-50 border-2 border-slate-200 rounded-lg p-4 md:p-5 w-full md:w-64 flex flex-col justify-between gap-3 md:h-56">
                         <div class="flex justify-between items-start">
-                            <span class="mono text-xs text-slate-400 font-medium">INPUT SUARA</span>
+                            <span class="mono text-xs text-slate-400 font-medium">1. INPUT SUARA</span>
                             <span class="w-2.5 h-2.5 rounded-full bg-slate-300" id="led-audio"></span>
                         </div>
                         <div>
-                            <h3 class="font-bold text-slate-900 text-base">Sumber Audio</h3>
-                            <p class="mono text-[11px] text-slate-500 mt-0.5">Mikrofon Live / Berkas WAV</p>
+                            <h3 class="font-bold text-slate-900 text-base">Pilih Suara Uji</h3>
+                            <p class="mono text-[11px] text-slate-500 mt-0.5">Mikrofon / Voice Note</p>
                         </div>
                         <div class="space-y-1.5">
                             <button onclick="runDetectionFlow('human')" class="w-full py-2 bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-semibold text-xs tracking-wider rounded-lg transition cursor-pointer shadow-sm">
-                                Simulasikan Manusia
+                                Uji Suara Manusia
                             </button>
                             <button onclick="runDetectionFlow('ai')" class="w-full py-2 bg-red-600 hover:bg-red-700 active:scale-95 text-white font-semibold text-xs tracking-wider rounded-lg transition cursor-pointer shadow-sm">
-                                Simulasikan AI Clone
+                                Uji Suara AI Kloning
                             </button>
                         </div>
                     </div>
 
-                    <!-- Konektor 1: DSP Extraction Line -->
                     <div class="w-full md:flex-1 flex flex-col items-center py-1 md:py-0 md:px-2">
-                        <span class="mono text-[11px] font-semibold text-slate-600 mb-1.5 uppercase">DSP & Resampling</span>
-                        <!-- Garis Horizontal Laptop -->
+                        <span class="mono text-[11px] font-semibold text-slate-600 mb-1.5 uppercase">Kirim Sinyal</span>
                         <div class="hidden md:block w-full bg-slate-200 h-1.5 rounded-full overflow-hidden">
                             <div id="line-dsp-h" class="sim-line-h w-0 h-full bg-blue-600"></div>
                         </div>
-                        <!-- Garis Vertikal HP -->
                         <div class="md:hidden w-1.5 bg-slate-200 h-10 rounded-full overflow-hidden">
                             <div id="line-dsp-v" class="sim-line-v w-full h-0 bg-blue-600"></div>
                         </div>
-                        <span class="mono text-[10px] text-slate-400 mt-1">22.05 kHz Float32</span>
+                        <span class="mono text-[10px] text-slate-400 mt-1">Gelombang Suara</span>
                     </div>
 
-                    <!-- Blok 2: BAMBS Engine -->
                     <div id="node-bambs" class="sim-box bg-slate-50 border-2 border-slate-200 rounded-lg p-4 md:p-5 w-full md:w-64 flex flex-col justify-between gap-3 md:h-56">
                         <div class="flex justify-between items-start">
-                            <span class="mono text-xs text-slate-400 font-medium">BAMBS ENGINE</span>
+                            <span class="mono text-xs text-slate-400 font-medium">2. MESIN PEMERIKSA</span>
                             <span class="w-2.5 h-2.5 rounded-full bg-slate-300" id="led-bambs"></span>
                         </div>
                         <div>
-                            <h3 class="font-bold text-slate-900 text-base">Uji 4 Batasan Fisik</h3>
-                            <p class="mono text-[11px] text-slate-500 mt-0.5">Pitch, Shimmer, HNR, MFCC-7</p>
+                            <h3 class="font-bold text-slate-900 text-base">Uji Ciri Fisik</h3>
+                            <p class="mono text-[11px] text-slate-500 mt-0.5">Cek 4 Tanda Biologis</p>
                         </div>
                         <div class="py-2 px-3 bg-slate-100 border border-slate-200 rounded mono text-[11px] text-slate-500 text-center" id="bambs-state">
                             STANDBY
                         </div>
                     </div>
 
-                    <!-- Konektor 2: Scoring Line -->
                     <div class="w-full md:flex-1 flex flex-col items-center py-1 md:py-0 md:px-2">
-                        <span class="mono text-[11px] font-semibold text-slate-600 mb-1.5 uppercase">Scoring Matrix</span>
-                        <!-- Garis Horizontal Laptop -->
+                        <span class="mono text-[11px] font-semibold text-slate-600 mb-1.5 uppercase">Hasil Uji</span>
                         <div class="hidden md:block w-full bg-slate-200 h-1.5 rounded-full overflow-hidden">
                             <div id="line-score-h" class="sim-line-h w-0 h-full bg-blue-600"></div>
                         </div>
-                        <!-- Garis Vertikal HP -->
                         <div class="md:hidden w-1.5 bg-slate-200 h-10 rounded-full overflow-hidden">
                             <div id="line-score-v" class="sim-line-v w-full h-0 bg-blue-600"></div>
                         </div>
-                        <span class="mono text-[10px] text-slate-400 mt-1">Multi-Boundary Weight</span>
+                        <span class="mono text-[10px] text-slate-400 mt-1">Skor Kecocokan</span>
                     </div>
 
-                    <!-- Blok 3: GuardiVoice Dashboard -->
                     <div id="node-dashboard" class="sim-box bg-slate-50 border-2 border-slate-200 rounded-lg overflow-hidden w-full md:w-64 flex flex-col justify-between md:h-56">
                         <div class="bg-[#0f172a] px-3.5 py-2 text-white flex justify-between items-center">
                             <div>
-                                <p class="text-xs font-bold leading-none">GuardiVoice UI</p>
-                                <p id="sim-dash-status" class="text-[9px] text-slate-400 mt-0.5">Siap Menganalisis</p>
+                                <p class="text-xs font-bold leading-none">Layar Pengguna</p>
+                                <p id="sim-dash-status" class="text-[9px] text-slate-400 mt-0.5">Siap</p>
                             </div>
                             <span class="w-2 h-2 rounded-full bg-slate-400" id="led-dash"></span>
                         </div>
@@ -636,36 +560,35 @@
                                 MENUNGGU AUDIO
                             </div>
                             <div class="bg-white rounded p-2 border border-slate-200 mono text-[10px] text-slate-700">
-                                <div>SKOR KEYAKINAN: <b id="sim-conf">-</b></div>
-                                <div>PELANGGARAN: <b id="sim-viol">-</b></div>
+                                <div>TINGKAT YAKIN: <b id="sim-conf">-</b></div>
+                                <div>STATUS TANDA: <b id="sim-viol">-</b></div>
                             </div>
                             <div id="sim-btn-audit" class="py-1.5 rounded bg-slate-300 text-slate-600 text-[9px] font-bold text-center uppercase tracking-wider">
-                                Diagnosa Forensik
+                                Buka Bukti Ilmiah
                             </div>
                         </div>
                     </div>
 
                 </div>
 
-                <!-- Status Bar Bawah -->
                 <div class="mt-5 pt-4 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-2">
-                        <span class="mono text-[11px] font-semibold text-slate-400 shrink-0">LOG SISTEM:</span>
-                        <span id="sys-log" class="mono text-xs text-slate-700 mt-0.5 sm:mt-0">Sentuh tombol "Simulasikan Manusia" atau "Simulasikan AI Clone" untuk melihat alur kerja.</span>
+                        <span class="mono text-[11px] font-semibold text-slate-400 shrink-0">STATUS SISTEM:</span>
+                        <span id="sys-log" class="mono text-xs text-slate-700 mt-0.5 sm:mt-0">Sentuh salah satu tombol di kotak kiri untuk menjalankan simulasi.</span>
                     </div>
-                    <button onclick="resetDetectionFlow()" class="mono text-xs text-blue-600 sm:text-slate-400 hover:text-slate-700 underline cursor-pointer self-end sm:self-auto">Reset Simulasi</button>
+                    <button onclick="resetDetectionFlow()" class="mono text-xs text-blue-600 sm:text-slate-400 hover:text-slate-700 underline cursor-pointer self-end sm:self-auto">Reset</button>
                 </div>
             </div>
         </div>
 
     </main>
 
-    <!-- Bottom Controls (Identik format Gelang TKI Web) -->
+    <!-- Bottom Controls -->
     <footer class="bg-white/95 backdrop-blur border-t border-slate-200 px-4 md:px-10 py-3 flex justify-between items-center shrink-0 z-10">
         <button onclick="nav(-1)" id="btn-prev" class="px-4 py-2.5 md:py-2 border border-slate-300 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-50 active:scale-95 disabled:opacity-30 cursor-pointer transition">
             ← Sebelumnya
         </button>
-        <span class="mono text-[10px] text-slate-400 hidden sm:inline">Geser layar (HP) atau gunakan tombol panah keyboard ← / →</span>
+        <span class="mono text-[10px] text-slate-400 hidden sm:inline">Gunakan tombol panah keyboard ← / → atau geser layar HP</span>
         <button onclick="nav(1)" id="btn-next" class="px-4 py-2.5 md:py-2 bg-slate-900 hover:bg-slate-800 active:scale-95 text-white rounded-lg text-xs font-semibold disabled:opacity-30 cursor-pointer transition">
             Selanjutnya →
         </button>
@@ -684,7 +607,6 @@
             document.getElementById('btn-prev').disabled = current === 0;
             document.getElementById('btn-next').disabled = current === total - 1;
             
-            // Otomatis scroll kembali ke atas saat ganti slide di HP
             const scrollArea = document.getElementById('main-scroll');
             if (scrollArea) scrollArea.scrollTop = 0;
         }
@@ -696,13 +618,11 @@
             }
         }
 
-        // Navigasi Keyboard
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowRight') nav(1);
             if (e.key === 'ArrowLeft') nav(-1);
         });
 
-        // Navigasi Geser Layar Sentuh (HP Android / iPhone)
         let touchStartX = 0;
         let touchStartY = 0;
         document.addEventListener('touchstart', (e) => {
@@ -719,7 +639,6 @@
             }
         }, { passive: true });
 
-        // Tab Switcher Slide 3 (Vokal vs Spektral)
         function switchTab(tab) {
             const vokalContent = document.getElementById('content-vokal');
             const spektralContent = document.getElementById('content-spektral');
@@ -745,7 +664,6 @@
             }
         }
 
-        // Accordion Toggle Penjelasan Parameter & Data
         function toggleSpec(card) {
             const content = card.querySelector('.spec-content');
             const indicator = card.querySelector('.spec-indicator');
@@ -754,15 +672,10 @@
             content.classList.toggle('hidden');
             card.classList.toggle('opened', isHidden);
             if (indicator) {
-                if (indicator.innerText.includes('Data') || card.innerHTML.includes('TAHAP')) {
-                    indicator.innerText = isHidden ? '− Tutup' : '+ Data';
-                } else {
-                    indicator.innerText = isHidden ? '− Tutup' : '+ Penjelasan Fisika';
-                }
+                indicator.innerText = isHidden ? '− Tutup' : '+ Penjelasan Mudah';
             }
         }
 
-        // Mockup Interaktif Slide 4 (GuardiVoice Demo Live)
         function mockDemoVoice(type) {
             const box = document.getElementById('mock-verdict-box');
             const title = document.getElementById('mock-verdict-title');
@@ -779,42 +692,41 @@
                 box.className = 'mt-3 bg-emerald-950/40 border border-emerald-500/40 rounded-xl p-3.5 transition-all';
                 title.innerText = 'Terdeteksi: Suara Manusia Asli';
                 title.className = 'font-bold text-sm text-emerald-400';
-                pill.innerText = '94.8% Yakin';
+                pill.innerText = '95% Yakin';
                 pill.className = 'mono text-[11px] font-bold text-emerald-300 bg-emerald-900/50 px-2 py-0.5 rounded';
-                desc.innerText = 'Variasi mikro-akustik vokal, respirasi paru, dan dinamika formant konsisten dengan suara manusia asli.';
+                desc.innerText = 'Getaran pita suara, hembusan napas, dan kelenturan nada terbukti alami seperti manusia asli.';
                 bar.className = 'h-full bg-emerald-500 transition-all duration-300';
-                bar.style.width = '94.8%';
+                bar.style.width = '95%';
 
-                vPitch.innerText = '168.4 Hz (Alami)';
+                vPitch.innerText = 'Alami (Lentur)';
                 vPitch.className = 'mono font-bold text-emerald-400 text-xs';
-                vShimmer.innerText = '0.0792 (Alami)';
+                vShimmer.innerText = 'Alami (Halus)';
                 vShimmer.className = 'mono font-bold text-emerald-400 text-xs';
-                vHnr.innerText = '3.4120 dB (Alami)';
+                vHnr.innerText = 'Alami (Ada Paru-paru)';
                 vHnr.className = 'mono font-bold text-emerald-400 text-xs';
-                vMfcc.innerText = '11.1820 (Alami)';
+                vMfcc.innerText = 'Alami (Resonansi Wajar)';
                 vMfcc.className = 'mono font-bold text-emerald-400 text-xs';
             } else {
                 box.className = 'mt-3 bg-red-950/40 border border-red-500/40 rounded-xl p-3.5 transition-all';
-                title.innerText = 'Terdeteksi: Suara Sintetis AI';
+                title.innerText = 'Terdeteksi: Suara Robot AI';
                 title.className = 'font-bold text-sm text-red-400';
-                pill.innerText = '97.6% AI Kloning';
+                pill.innerText = '98% Tiruan AI';
                 pill.className = 'mono text-[11px] font-bold text-red-300 bg-red-900/50 px-2 py-0.5 rounded';
-                desc.innerText = 'Pola gelombang artifisial terdeteksi: intonasi monoton dan anomali dispersi formant khas neural vocoder TTS.';
+                desc.innerText = 'Ditemukan tanda-tanda suara buatan komputer: nada kaku dan tidak ada getaran respirasi alami.';
                 bar.className = 'h-full bg-red-500 transition-all duration-300';
-                bar.style.width = '97.6%';
+                bar.style.width = '98%';
 
-                vPitch.innerText = '94.1 Hz (Artifisial)';
+                vPitch.innerText = 'Janggal (Kaku)';
                 vPitch.className = 'mono font-bold text-red-400 text-xs';
-                vShimmer.innerText = '0.1580 (Artifisial)';
+                vShimmer.innerText = 'Janggal (Lonjakan Mikro)';
                 vShimmer.className = 'mono font-bold text-red-400 text-xs';
-                vHnr.innerText = '1.2050 dB (Artifisial)';
+                vHnr.innerText = 'Janggal (Tanpa Napas)';
                 vHnr.className = 'mono font-bold text-red-400 text-xs';
-                vMfcc.innerText = '18.9400 (Artifisial)';
+                vMfcc.innerText = 'Janggal (Palsu)';
                 vMfcc.className = 'mono font-bold text-red-400 text-xs';
             }
         }
 
-        // Simulasi Alur Kerja Slide 6 (End-to-End)
         let simRunning = false;
         function runDetectionFlow(target) {
             if (simRunning) return;
@@ -833,24 +745,24 @@
 
             nAudio.classList.add('active');
             document.getElementById('led-audio').className = 'w-2.5 h-2.5 rounded-full bg-blue-600 animate-ping';
-            log.innerText = `[1/4] Menerima input audio (${target === 'human' ? 'Suara Manusia' : 'Suara AI'}). Mengonversi sinyal PCM ke mono 22.05 kHz...`;
+            log.innerText = `[1/4] Suara diterima (${target === 'human' ? 'Suara Manusia' : 'Suara AI'}). Mulai membaca gelombang getaran...`;
 
             setTimeout(() => {
                 lDspH.style.width = '100%';
                 lDspV.style.height = '100%';
-                log.innerText = '[2/4] Ekstraksi DSP berjalan: Menghitung kontur Pitch (F0), fluktuasi Shimmer, energi HNR, dan dispersi MFCC-7...';
+                log.innerText = '[2/4] Komputer memecah gelombang: mengecek kelenturan nada, getaran, napas, dan pantulan suara...';
             }, 800);
 
             setTimeout(() => {
                 nBambs.classList.add('active');
                 document.getElementById('led-bambs').className = 'w-2.5 h-2.5 rounded-full bg-blue-600';
                 const bState = document.getElementById('bambs-state');
-                bState.innerText = target === 'human' ? '4/4 ALAMI' : '3/4 ANOMALI AI';
+                bState.innerText = target === 'human' ? 'SEMUA CIRI ALAMI' : 'ADA KEJANGGALAN';
                 bState.className = target === 'human' 
                     ? 'py-2 px-3 bg-emerald-50 border border-emerald-300 rounded mono text-[11px] text-emerald-700 font-bold text-center'
                     : 'py-2 px-3 bg-red-50 border border-red-300 rounded mono text-[11px] text-red-700 font-bold text-center';
 
-                log.innerText = '[3/4] BAMBS mengevaluasi vektor parameter terhadap 4 ambang batas bio-akustik laring...';
+                log.innerText = '[3/4] Memeriksa apakah getaran mematuhi batas fisik organ tubuh manusia...';
             }, 1700);
 
             setTimeout(() => {
@@ -870,21 +782,21 @@
                 if (target === 'human') {
                     vPill.innerText = 'SUARA MANUSIA ASLI';
                     vPill.className = 'bg-emerald-50 rounded py-1.5 text-center text-xs font-extrabold text-emerald-700 border border-emerald-300';
-                    sConf.innerText = '94.8% Alami';
-                    sViol.innerText = '0 / 4 Batasan AI';
+                    sConf.innerText = '95% Alami';
+                    sViol.innerText = 'Tidak Ada Kejanggalan';
                     sAudit.className = 'py-1.5 rounded bg-emerald-600 text-white text-[9px] font-bold text-center uppercase tracking-wider';
                     ledDash.className = 'w-2 h-2 rounded-full bg-emerald-400';
                     sStatus.innerText = 'Terverifikasi Asli';
-                    log.innerText = '[4/4] Selesai! GuardiVoice memvalidasi suara memenuhi seluruh batasan vokal biologis manusia.';
+                    log.innerText = '[4/4] Selesai! Suara terbukti memiliki tanda-tanda getaran biologis manusia asli.';
                 } else {
-                    vPill.innerText = 'SUARA SINTETIS AI';
+                    vPill.innerText = 'SUARA BUATAN AI';
                     vPill.className = 'bg-red-50 rounded py-1.5 text-center text-xs font-extrabold text-red-600 border border-red-300';
-                    sConf.innerText = '97.6% Kloning AI';
-                    sViol.innerText = '3 / 4 Batasan Dilanggar';
+                    sConf.innerText = '98% Tiruan AI';
+                    sViol.innerText = 'Ditemukan Tanda Palsu';
                     sAudit.className = 'py-1.5 rounded bg-red-600 text-white text-[9px] font-bold text-center uppercase tracking-wider';
                     ledDash.className = 'w-2 h-2 rounded-full bg-red-400';
-                    sStatus.innerText = 'Ancaman Kloning AI';
-                    log.innerText = '[4/4] Waspada! GuardiVoice mendeteksi pelanggaran batasan Shimmer, HNR, dan MFCC khas neural vocoder TTS.';
+                    sStatus.innerText = 'Tiruan Komputer';
+                    log.innerText = '[4/4] Peringatan! Ditemukan kejanggalan: nada terlalu kaku dan tidak ada hembusan napas alami.';
                 }
 
                 simRunning = false;
@@ -917,9 +829,9 @@
             document.getElementById('sim-conf').innerText = '-';
             document.getElementById('sim-viol').innerText = '-';
             document.getElementById('sim-btn-audit').className = 'py-1.5 rounded bg-slate-300 text-slate-600 text-[9px] font-bold text-center uppercase tracking-wider';
-            document.getElementById('sim-dash-status').innerText = 'Siap Menganalisis';
+            document.getElementById('sim-dash-status').innerText = 'Siap';
 
-            document.getElementById('sys-log').innerText = 'Sentuh tombol "Simulasikan Manusia" atau "Simulasikan AI Clone" untuk melihat alur kerja.';
+            document.getElementById('sys-log').innerText = 'Sentuh salah satu tombol di kotak kiri untuk menjalankan simulasi.';
         }
 
         updateView();
